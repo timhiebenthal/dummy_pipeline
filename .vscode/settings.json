@@ -1,0 +1,17 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "DuckDB",
+            "name": "superstore",
+            "database": "\\\\wsl.localhost\\Ubuntu\\home\\tim_ubuntu\\git_repos\\pipeline\\Sample - Superstore.xls"
+        },
+        {
+            "previewLimit": 50,
+            "driver": "DuckDB",
+            "name": "trips",
+            "database": "dummy.db"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
