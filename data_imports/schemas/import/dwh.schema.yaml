@@ -1,0 +1,161 @@
+version: 17
+version_hash: rhUELVaHHgtQdIeJn1DZGhpHQN8gmShOfpTookceFfo=
+engine_version: 8
+name: dwh
+tables:
+  _dlt_version:
+    columns:
+      version:
+        data_type: bigint
+        nullable: false
+      engine_version:
+        data_type: bigint
+        nullable: false
+      inserted_at:
+        data_type: timestamp
+        nullable: false
+      schema_name:
+        data_type: text
+        nullable: false
+      version_hash:
+        data_type: text
+        nullable: false
+      schema:
+        data_type: text
+        nullable: false
+    write_disposition: skip
+    description: Created by DLT. Tracks schema updates
+  _dlt_loads:
+    columns:
+      load_id:
+        data_type: text
+        nullable: false
+      schema_name:
+        data_type: text
+        nullable: true
+      status:
+        data_type: bigint
+        nullable: false
+      inserted_at:
+        data_type: timestamp
+        nullable: false
+      schema_version_hash:
+        data_type: text
+        nullable: true
+    write_disposition: skip
+    description: Created by DLT. Tracks completed loads
+  players:
+    columns:
+      name:
+        data_type: text
+        nullable: true
+      position:
+        data_type: text
+        nullable: true
+      height_feet:
+        data_type: text
+        nullable: true
+      _dlt_load_id:
+        data_type: text
+        nullable: false
+      _dlt_id:
+        data_type: text
+        nullable: false
+        unique: true
+      id:
+        nullable: false
+        primary_key: true
+        data_type: bigint
+      age:
+        data_type: bigint
+        nullable: true
+    write_disposition: replace
+  _dlt_pipeline_state:
+    columns:
+      version:
+        data_type: bigint
+        nullable: false
+      engine_version:
+        data_type: bigint
+        nullable: false
+      pipeline_name:
+        data_type: text
+        nullable: false
+      state:
+        data_type: text
+        nullable: false
+      created_at:
+        data_type: timestamp
+        nullable: false
+      version_hash:
+        data_type: text
+        nullable: true
+      _dlt_load_id:
+        data_type: text
+        nullable: false
+      _dlt_id:
+        data_type: text
+        nullable: false
+        unique: true
+    write_disposition: append
+  players__accomplishments:
+    columns:
+      year:
+        data_type: bigint
+        nullable: true
+      award:
+        data_type: text
+        nullable: true
+      _dlt_root_id:
+        data_type: text
+        nullable: false
+        root_key: true
+      _dlt_parent_id:
+        data_type: text
+        nullable: false
+        foreign_key: true
+      _dlt_list_idx:
+        data_type: bigint
+        nullable: false
+      _dlt_id:
+        data_type: text
+        nullable: false
+        unique: true
+    parent: players
+settings:
+  detections:
+  - iso_timestamp
+  default_hints:
+    not_null:
+    - _dlt_id
+    - _dlt_root_id
+    - _dlt_parent_id
+    - _dlt_list_idx
+    - _dlt_load_id
+    foreign_key:
+    - _dlt_parent_id
+    root_key:
+    - _dlt_root_id
+    unique:
+    - _dlt_id
+normalizers:
+  names: snake_case
+  json:
+    module: dlt.common.normalizers.json.relational
+    config:
+      propagation:
+        tables:
+          players:
+            _dlt_id: _dlt_root_id
+previous_hashes:
+- E8Zw9wX4CLGszhYksAT3FeUPl4KqsezEqMXxVDkI33g=
+- 91+b/D76q3lpPEFaGrdLf9CEL5UTiGA5nTzkjlbqigI=
+- bl7nC6fbmU6hIC3k/VioicHd1h/5KEhespx9ExLliM4=
+- ZUqQdWfaWQS4lJNN0zhjPxTgo/nu2PqJ+ZXwHgm2IjI=
+- ZuoYb20aVt98w/+YPxmNpSc2Sn+n24fD2irz6aeeNy0=
+- yv4CJUwI8ILKTWQFgcbA5ffBkpLnUaHeWf8h9ezhT3M=
+- Vtizb+2HzZOTFzQa9uA+qxVebMCPB5sX9Z/iKUim/K4=
+- kLwb0ZtfV8JVUMFQhW1n7c17AhhiBkigmZwOMAqt7iQ=
+- qkr8gpkn+VKyeQPy7jocMnH2bnd5V+RqaBno8Q3VnmM=
+- le5GXtRBbWw1/Uf3N/0YQZnxUmTjFim0tIbY6eNIbBk=
+- hoxKwNQPU06yz0LORQxnz59WHVNSRU4ForqMn3mBDKs=
