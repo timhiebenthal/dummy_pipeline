@@ -4,7 +4,7 @@ import json
 pipeline = dlt.pipeline(
     pipeline_name="dwh",
     destination=dlt.destinations.duckdb(credentials="database/dwh.duckdb"),
-    dataset_name="raw_dummy",
+    dataset_name="raw_nba",
     # import_schema_path="data_imports/schemas/import/",
     # export_schema_path="data_imports/schemas/export",
 )
@@ -24,14 +24,14 @@ data = [
         "height_feet": "7",
     },
     {
-        "id": 4,
+        "id": 3,
         "name": "James Harden",
         "position": "G",
         "height_feet": "6.6",
     },
-    # {"id": 5, "name": "Kawhi Leonard", "position": "F", "height_feet": "6.7"},
+    # {"id": 4, "name": "Kawhi Leonard", "position": "F", "height_feet": "6.7"},
     # {
-    #     "id": 3,
+    #     "id": 5,
     #     "name": "Stephen Curry",
     #     "position": "G",
     #     "height_feet": "5",
