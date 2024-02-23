@@ -1,0 +1,185 @@
+version: 9
+version_hash: g7Y3VdoEW9NjVena6Zd79EFPQGB0yfGyaVPcI2gJ6xw=
+engine_version: 8
+name: dwh
+tables:
+  _dlt_version:
+    columns:
+      version:
+        data_type: bigint
+        nullable: false
+      engine_version:
+        data_type: bigint
+        nullable: false
+      inserted_at:
+        data_type: timestamp
+        nullable: false
+      schema_name:
+        data_type: text
+        nullable: false
+      version_hash:
+        data_type: text
+        nullable: false
+      schema:
+        data_type: text
+        nullable: false
+    write_disposition: skip
+    description: Created by DLT. Tracks schema updates
+  _dlt_loads:
+    columns:
+      load_id:
+        data_type: text
+        nullable: false
+      schema_name:
+        data_type: text
+        nullable: true
+      status:
+        data_type: bigint
+        nullable: false
+      inserted_at:
+        data_type: timestamp
+        nullable: false
+      schema_version_hash:
+        data_type: text
+        nullable: true
+    write_disposition: skip
+    description: Created by DLT. Tracks completed loads
+  players:
+    columns:
+      id:
+        data_type: bigint
+        nullable: false
+        primary_key: true
+      name:
+        data_type: text
+        nullable: true
+      position:
+        data_type: text
+        nullable: true
+      height_feet:
+        data_type: text
+        nullable: true
+      _dlt_load_id:
+        data_type: text
+        nullable: false
+      _dlt_id:
+        data_type: text
+        nullable: false
+        unique: true
+      favorite__food:
+        data_type: text
+        nullable: true
+      favorite__color:
+        data_type: text
+        nullable: true
+    write_disposition: merge
+  _dlt_pipeline_state:
+    columns:
+      version:
+        data_type: bigint
+        nullable: false
+      engine_version:
+        data_type: bigint
+        nullable: false
+      pipeline_name:
+        data_type: text
+        nullable: false
+      state:
+        data_type: text
+        nullable: false
+      created_at:
+        data_type: timestamp
+        nullable: false
+      version_hash:
+        data_type: text
+        nullable: true
+      _dlt_load_id:
+        data_type: text
+        nullable: false
+      _dlt_id:
+        data_type: text
+        nullable: false
+        unique: true
+    write_disposition: append
+  players__accomplishments:
+    columns:
+      year:
+        data_type: bigint
+        nullable: true
+      award:
+        data_type: text
+        nullable: true
+      _dlt_root_id:
+        data_type: text
+        nullable: false
+        root_key: true
+      _dlt_parent_id:
+        data_type: text
+        nullable: false
+        foreign_key: true
+      _dlt_list_idx:
+        data_type: bigint
+        nullable: false
+      _dlt_id:
+        data_type: text
+        nullable: false
+        unique: true
+    parent: players
+  players__hates:
+    columns:
+      food:
+        data_type: text
+        nullable: true
+      color:
+        data_type: text
+        nullable: true
+      _dlt_root_id:
+        data_type: text
+        nullable: false
+        root_key: true
+      _dlt_parent_id:
+        data_type: text
+        nullable: false
+        foreign_key: true
+      _dlt_list_idx:
+        data_type: bigint
+        nullable: false
+      _dlt_id:
+        data_type: text
+        nullable: false
+        unique: true
+    parent: players
+settings:
+  detections:
+  - iso_timestamp
+  default_hints:
+    not_null:
+    - _dlt_id
+    - _dlt_root_id
+    - _dlt_parent_id
+    - _dlt_list_idx
+    - _dlt_load_id
+    foreign_key:
+    - _dlt_parent_id
+    root_key:
+    - _dlt_root_id
+    unique:
+    - _dlt_id
+normalizers:
+  names: snake_case
+  json:
+    module: dlt.common.normalizers.json.relational
+    config:
+      propagation:
+        tables:
+          players:
+            _dlt_id: _dlt_root_id
+previous_hashes:
+- TAKTyhZR3RpBmJTxqNyj+DuZWCvqYtu2S2QSZWYig3Q=
+- IggsBOyWF+j54AryEuqN58xf/hvI2uFTpa2/POZvbbI=
+- HwoEMMjtHhXJqBrlzhaU9cfD9qfWZq1MofzhECx8ZZ0=
+- mYHGmOjWmsnPRuVhuo2Y/YbgX/o5uvYaIK7uubhVkKI=
+- PASrBjkbNSE4uYDroKS6GtfbNTIBwTwlwcZ8G0biYmQ=
+- le5GXtRBbWw1/Uf3N/0YQZnxUmTjFim0tIbY6eNIbBk=
+- hoxKwNQPU06yz0LORQxnz59WHVNSRU4ForqMn3mBDKs=
+- /efYmCT0xnb1W0yD2zTH+6DAFlxxGXias2OQHs5tyCY=
