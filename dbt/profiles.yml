@@ -1,0 +1,9 @@
+dummy:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: '../database/dbt.duckdb'
+      extensions:
+        - httpfs
+        - parquet

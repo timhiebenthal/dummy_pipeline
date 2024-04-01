@@ -1,0 +1,8 @@
+date,source,medium,campaign,users,conversions
+2024-01-01,google,organic,(none),100,10
+2024-01-01,google,cpc,Search - Brand - we're so cool,520,44
+2024-01-01,google,cpc,Search - Generic - Problem xyz,610,25
+2024-01-01,fb,paid,Prospecting - Millenials - ...,373,18
+2024-01-01,fb,paid,Retargeting - Millenials,92,15
+2024-01-01,facebook,referral,(none),112,4
+2024-01-01,(direct),(none),(none),185,32

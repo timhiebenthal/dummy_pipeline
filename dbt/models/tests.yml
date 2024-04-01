@@ -1,0 +1,15 @@
+unit_tests:
+  - name: test_marketing_channel_mapping
+    description: Validate that the mapping of UTM-Parameters works as intended.
+    model: int_website_traffic
+    given:
+     - input: ref('source_traffic')
+       rows:
+         - {source: google, medium: cpc, campaign: Search - Brand - cool stuff}
+         - {source: google, medium: cpc, campaign: Old naming Syntax}
+         - {source: fb, medium: paid, campaign: yada yada}
+    expect:
+       rows:
+          - {marketing_channel: SEA Brand}
+          - {marketing_channel: Unknown}
+          - {marketing_channel: Paid Social}
